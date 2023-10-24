@@ -62,17 +62,12 @@ public class IgniteToStringBuilderSelfTest extends IgniteAbstractTest {
     }
 
     private String sortFieldsInToString(String input){
-        int startIndex = input.indexOf('[') + 1;
-        int endIndex = input.indexOf(']');
+        String toStringFields = input.substring(input.indexOf('[') + 1, input.indexOf(']'));
 
-        String toStringFields = input.substring(startIndex, endIndex);
         String[] elements = toStringFields.split(", ");
         Arrays.sort(elements);
 
-        String sortedContent = String.join(", ", elements);
-        String sortedToString = input.replace(toStringFields, sortedContent);
-
-        return sortedToString;
+        return input.replace(toStringFields, String.join(", ", elements));
     }
 
     @Test
