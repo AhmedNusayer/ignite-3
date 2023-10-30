@@ -63,10 +63,8 @@ public class IgniteToStringBuilderSelfTest extends IgniteAbstractTest {
 
     private String sortFieldsInToString(String input){
         String toStringFields = input.substring(input.indexOf('[') + 1, input.indexOf(']'));
-
         String[] elements = toStringFields.split(", ");
         Arrays.sort(elements);
-
         return input.replace(toStringFields, String.join(", ", elements));
     }
 
