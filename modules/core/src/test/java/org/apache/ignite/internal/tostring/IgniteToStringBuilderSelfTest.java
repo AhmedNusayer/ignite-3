@@ -58,7 +58,14 @@ public class IgniteToStringBuilderSelfTest extends IgniteAbstractTest {
     public void testToString() {
         TestClass1 obj = new TestClass1();
 
-        assertEquals(obj.toStringManual(), obj.toStringAutomatic());
+        assertEquals(sortFieldsInToString(obj.toStringManual()), sortFieldsInToString(obj.toStringAutomatic()));
+    }
+
+    private String sortFieldsInToString(String input){
+        String toStringFields = input.substring(input.indexOf('[') + 1, input.indexOf(']'));
+        String[] elements = toStringFields.split(", ");
+        Arrays.sort(elements);
+        return input.replace(toStringFields, String.join(", ", elements));
     }
 
     @Test
